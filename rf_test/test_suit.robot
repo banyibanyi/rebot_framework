@@ -1,4 +1,6 @@
 
+*** Settings ***
+Library           SeleniumLibrary
 
 *** Test Cases ***
 
@@ -58,3 +60,12 @@ case import
     ${b}    Evaluate    int(5)
     ${add}    add    ${a}    ${b}
     log    ${add}
+
+case Baidu search
+    Open Browser    https://www.baidu.com    chrome
+    Input text    id:kw    selenium
+    click button    id:su
+    Evaluate    time.sleep(2)    time
+    ${title}    Get Title
+    should contain     ${title}     selenium
+    close Browser
